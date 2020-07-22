@@ -4,6 +4,10 @@ import { ExpenseListFilters } from "./../../components/ExpenseListFilters";
 import { filters, altFilters } from "../fixtures/filters";
 import { DateRangePicker } from "react-dates";
 import moment from "moment";
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+
+Enzyme.configure({ adapter: new Adapter() });
 
 let setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, wrapper;
 

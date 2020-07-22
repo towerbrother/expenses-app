@@ -4,6 +4,10 @@ import ExpenseForm from "../../components/ExpenseForm";
 import expensesTestData from "../fixtures/expenses";
 import moment from "moment";
 import { SingleDatePicker } from "react-dates";
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+
+Enzyme.configure({ adapter: new Adapter() });
 
 test("should render ExpenseForm correctly", () => {
   const wrapper = shallow(<ExpenseForm />);

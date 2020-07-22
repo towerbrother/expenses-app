@@ -1,8 +1,12 @@
 import React from "react";
 import { shallow } from "enzyme";
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 import { AddExpensePage } from "./../../components/AddExpensePage";
 import expensesTestData from "../fixtures/expenses";
 import ExpenseForm from "../../components/ExpenseForm";
+
+Enzyme.configure({ adapter: new Adapter() });
 
 let addExpense, history, wrapper;
 

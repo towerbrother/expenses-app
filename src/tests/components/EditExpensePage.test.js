@@ -3,6 +3,10 @@ import { shallow } from "enzyme";
 import { EditExpensePage } from "../../components/EditExpensePage";
 import ExpenseForm from "../../components/ExpenseForm";
 import expensesTestData from "../fixtures/expenses";
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+
+Enzyme.configure({ adapter: new Adapter() });
 
 let editExpense, removeExpense, history, wrapper;
 
