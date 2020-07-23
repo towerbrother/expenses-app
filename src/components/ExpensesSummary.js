@@ -4,27 +4,23 @@ import selectExpenses from "../selectors/expenses";
 import getExpensesTotal from "../selectors/expenses-total";
 import numeral from "numeral";
 
-export const ExpensesSummary = (props) => {
-  const total = numeral(props.expensesTotal / 100).format("$0,0.00");
+export const ExpensesSummary = ({ expensesCount, expensesTotal }) => {
+  const formattedTotal = numeral(expensesTotal / 100).format("$0,0.00");
+  const expenseWord = expensesCount === 1 ? "expense" : "expenses";
   return (
     <div>
-      <p>
-        {props.expensesCount === 0
-          ? `No expenses`
-          : props.expensesCount === 1
-          ? `Viewing 1 expense totalling ${total}`
-          : `Viewing ${props.expensesCount} expenses totalling ${total}`}
-      </p>
+      <h1>
+        Viewing {expensesCount} {expenseWord} totalling {formattedTotal}
+      </h1>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
+  const visibleExpenses = selectExpenses(state.expenses, state.filters);
   return {
-    expensesCount: selectExpenses(state.expenses, state.filters).length,
-    expensesTotal: getExpensesTotal(
-      selectExpenses(state.expenses, state.filters)
-    ),
+    expensesCount: visibleExpenses.length,
+    expensesTotal: getExpensesTotal(visibleExpenses),
   };
 };
 
