@@ -1,4 +1,5 @@
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
+import "firebase/auth";
 import "firebase/database";
 
 const firebaseConfig = {
@@ -20,6 +21,7 @@ firebase
   .set({
     name: "Giorgio Torre",
     age: 30,
+    nationality: "Italian",
     location: {
       city: "London",
       country: "United Kingdom",
