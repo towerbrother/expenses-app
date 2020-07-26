@@ -23,6 +23,7 @@
     "redux": "^4.0.5"
   },
   "scripts": {
+    "live-server": "react-scripts start",
     "start": "node server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",

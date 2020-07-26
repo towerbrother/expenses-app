@@ -14,16 +14,3 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
-firebase
-  .database()
-  .ref("users")
-  .set({
-    name: "Giorgio Torre",
-    age: 30,
-    nationality: "Italian",
-    location: {
-      city: "London",
-      country: "United Kingdom",
-    },
-  });
