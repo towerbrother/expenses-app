@@ -8,15 +8,15 @@ import Adapter from "enzyme-adapter-react-16";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-let editExpense, startRemoveExpense, history, wrapper;
+let startEditExpense, startRemoveExpense, history, wrapper;
 
 beforeEach(() => {
-  editExpense = jest.fn();
+  startEditExpense = jest.fn();
   startRemoveExpense = jest.fn();
   history = { push: jest.fn() };
   wrapper = shallow(
     <EditExpensePage
-      editExpense={editExpense}
+      startEditExpense={startEditExpense}
       startRemoveExpense={startRemoveExpense}
       history={history}
       expense={expensesTestData[0]}
@@ -28,9 +28,9 @@ test("should render EditExpensePage correctly", () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-test("should handle editExpense", () => {
+test("should handle startEditExpense", () => {
   wrapper.find(ExpenseForm).prop("onSubmit")(expensesTestData[0]);
-  expect(editExpense).toHaveBeenLastCalledWith(
+  expect(startEditExpense).toHaveBeenLastCalledWith(
     expensesTestData[0].id,
     expensesTestData[0]
   );
