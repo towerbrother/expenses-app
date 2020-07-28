@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "../firebase/firebase";
 
 // Synch
 // component calls action generator
@@ -14,7 +14,7 @@ import firebase from "firebase";
 // function runs - dispatches other actions that update redux
 
 // ADD_EXPENSE
-const addExpense = (expense) => ({
+export const addExpense = (expense) => ({
   type: "ADD_EXPENSE",
   expense,
 });
@@ -28,7 +28,7 @@ export const startAddExpense = (expenseData = {}) => {
       createdAt = 0,
     } = expenseData;
     const expense = { description, note, amount, createdAt };
-    firebase
+    return firebase
       .database()
       .ref("expenses")
       .push(expense)

@@ -8,13 +8,13 @@ import ExpenseForm from "../../components/ExpenseForm";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-let addExpense, history, wrapper;
+let startAddExpense, history, wrapper;
 
 beforeEach(() => {
-  addExpense = jest.fn();
+  startAddExpense = jest.fn();
   history = { push: jest.fn() };
   wrapper = shallow(
-    <AddExpensePage addExpense={addExpense} history={history} />
+    <AddExpensePage startAddExpense={startAddExpense} history={history} />
   );
 });
 
@@ -22,8 +22,8 @@ test("should render AddExpensePage correctly", () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-test("should handle addExpense", () => {
+test("should handle onSubmit", () => {
   wrapper.find(ExpenseForm).prop("onSubmit")(expensesTestData[0]);
-  expect(addExpense).toHaveBeenLastCalledWith(expensesTestData[0]);
+  expect(startAddExpense).toHaveBeenLastCalledWith(expensesTestData[0]);
   expect(history.push).toHaveBeenLastCalledWith("/");
 });
