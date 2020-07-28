@@ -44,16 +44,17 @@ export const removeExpense = ({ id } = {}) => ({
   id,
 });
 
-// export const startRemoveExpense = () => {
-//   return (dispatch) => {
-//     firebase.database()
-//       .ref(`expenses/${ref.key}`)
-//       .remove()
-//       .then((ref) => {
-//         dispatch(removeExpense(ref.key));
-//       });
-//   };
-// };
+export const startRemoveExpense = ({ id } = {}) => {
+  return (dispatch) => {
+    return firebase
+      .database()
+      .ref(`expenses/${id}`)
+      .remove()
+      .then(() => {
+        dispatch(removeExpense({ id }));
+      });
+  };
+};
 
 // EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
