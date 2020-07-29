@@ -11,15 +11,14 @@ import {
   startSetExpenses,
 } from "./../../actions/expenses";
 import expensesTestData from "../fixtures/expenses";
-import firebase from "../../firebase/firebase";
+import { database } from "../../firebase/firebase";
 
 beforeEach((done) => {
   const expenses = {};
   expensesTestData.forEach(({ id, description, note, amount, createdAt }) => {
     expenses[id] = { description, note, amount, createdAt };
   });
-  firebase
-    .database()
+  database
     .ref("expenses")
     .set(expenses)
     .then(() => done());
@@ -41,8 +40,7 @@ test("should remove expense from firebase", (done) => {
       type: "REMOVE_EXPENSE",
       id,
     });
-    return firebase
-      .database()
+    database
       .ref(`expenses/${id}`)
       .once("value")
       .then((snapshot) => {
@@ -72,8 +70,7 @@ test("should edit expense in firebase", (done) => {
       id,
       updates,
     });
-    return firebase
-      .database()
+    return database
       .ref(`expenses/${id}`)
       .once("value")
       .then((snapshot) => {
@@ -105,8 +102,7 @@ test("should add expense to database and store", (done) => {
       type: "ADD_EXPENSE",
       expense: { id: expect.any(String), ...expenseData },
     });
-    firebase
-      .database()
+    database
       .ref(`expenses/${actions[0].expense.id}`)
       .once("value")
       .then((snapshot) => {
@@ -130,8 +126,7 @@ test("should add expense with defaults data to database and store", (done) => {
       type: "ADD_EXPENSE",
       expense: { id: expect.any(String), ...expenseDefaultData },
     });
-    firebase
-      .database()
+    database
       .ref(`expenses/${actions[0].expense.id}`)
       .once("value")
       .then((snapshot) => {

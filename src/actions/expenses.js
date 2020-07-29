@@ -1,4 +1,4 @@
-import firebase from "../firebase/firebase";
+import { database } from "../firebase/firebase";
 
 // Synch
 // component calls action generator
@@ -28,8 +28,7 @@ export const startAddExpense = (expenseData = {}) => {
       createdAt = 0,
     } = expenseData;
     const expense = { description, note, amount, createdAt };
-    return firebase
-      .database()
+    return database
       .ref("expenses")
       .push(expense)
       .then((ref) => {
@@ -46,8 +45,7 @@ export const removeExpense = ({ id } = {}) => ({
 
 export const startRemoveExpense = ({ id } = {}) => {
   return (dispatch) => {
-    return firebase
-      .database()
+    return database
       .ref(`expenses/${id}`)
       .remove()
       .then(() => {
@@ -65,8 +63,7 @@ export const editExpense = (id, updates) => ({
 
 export const startEditExpense = (id, updates) => {
   return (dispatch) => {
-    return firebase
-      .database()
+    return database
       .ref(`expenses/${id}`)
       .update(updates)
       .then(() => {
@@ -83,8 +80,7 @@ export const setExpenses = (expenses) => ({
 
 export const startSetExpenses = () => {
   return (dispatch) => {
-    return firebase
-      .database()
+    return database
       .ref("expenses")
       .once("value")
       .then((snapshot) => {
