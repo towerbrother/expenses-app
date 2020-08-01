@@ -17,6 +17,10 @@ firebase.initializeApp(firebaseConfig);
 export const database = firebase.database();
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
+googleAuthProvider.setCustomParameters({
+  prompt: "select_account",
+});
+
 export default firebase;
 
 // // child_removed
