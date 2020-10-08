@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
+import CreatedBy from "../components/CreatedBy";
 import Header from "../components/Header";
 
 export const PrivateRoute = ({ isAuth, component: Component, ...rest }) => (
@@ -11,6 +12,7 @@ export const PrivateRoute = ({ isAuth, component: Component, ...rest }) => (
         <div>
           <Header />
           <Component {...props} />
+          <CreatedBy />
         </div>
       ) : (
         <Redirect to="/" />
