@@ -6,7 +6,7 @@ const CreatedBy = () => (
       Created by{" "}
       <a
         className="createdBy__link"
-        href=""
+        href="https://towerbrother.github.io/portfolio-app/"
         target="_blank"
         rel="noopener noreferrer"
       >
